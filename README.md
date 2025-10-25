@@ -78,11 +78,16 @@ function doPost(e) {
       headerRange.setFontColor('#0d1216');
     }
     
-    // Append the data
+    // Format the entire phone number column as text FIRST
+    const lastRow = sheet.getLastRow();
+    const phoneColumn = sheet.getRange(1, 3, sheet.getMaxRows(), 1);
+    phoneColumn.setNumberFormat('@STRING@');
+    
+    // Append the data with phone number prefixed with single quote to force text
     sheet.appendRow([
       data.timestamp || new Date(),
       data.nama || '',
-      data.noHP || '',
+      "'" + (data.noHP || ''), // Force text format with single quote prefix
       data.kelasJurusan || '',
       data.alasanBergabung || '',
       data.pilihan1 || '',
