@@ -9,6 +9,28 @@ export const metadata = {
     icon: '/logo.svg',
     apple: '/logo.svg',
   },
+  openGraph: {
+    title: "Open Recruitment Staf TASIS 2025/2026",
+    description: "Bergabunglah dengan TASIS! Form pendaftaran staff organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
+    url: "https://staffoprec.rejaka.id",
+    siteName: "TASIS Recruitment",
+    images: [
+      {
+        url: "/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "TASIS Logo - Tata Tertib Siswa",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Open Recruitment Staf TASIS 2025/2026",
+    description: "Bergabunglah dengan TASIS! Form pendaftaran staff organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
+    images: ["/logo.svg"],
+  },
 };
 
 export default function RootLayout({ children }) {
