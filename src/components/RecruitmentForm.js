@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { FaCheckCircle, FaTimesCircle, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaInstagram, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
 
 const POSITIONS = ['Ketua', 'Sekretaris', 'Bendahara'];
 
@@ -124,7 +124,10 @@ export default function RecruitmentForm() {
                             className="block w-full p-3 sm:p-4 rounded-lg text-center font-bold sm:font-medium text-sm sm:text-base transition-all hover:shadow-md hover:opacity-90"
                             style={{ backgroundColor: '#ebae3b', color: '#0d1216' }}
                         >
-                            📱 Contact Person 1: 0831-0739-3837 (Abim)
+                            <span className="inline-flex items-center gap-2">
+                                <FaPhoneAlt />
+                                Contact Person 1: 0831-0739-3837 (Abim)
+                            </span>
                         </a>
                         <a
                             href="https://wa.me/6287898973388"
@@ -133,7 +136,10 @@ export default function RecruitmentForm() {
                             className="block w-full p-3 sm:p-4 rounded-lg text-center font-bold sm:font-medium text-sm sm:text-base transition-all hover:shadow-md hover:opacity-90"
                             style={{ backgroundColor: '#ebae3b', color: '#0d1216' }}
                         >
-                            📱 Contact Person 2: 0878-9897-3388 (Rani)
+                            <span className="inline-flex items-center gap-2">
+                                <FaPhoneAlt />
+                                Contact Person 2: 0878-9897-3388 (Rani)
+                            </span>
                         </a>
                     </div>
 
@@ -193,7 +199,7 @@ export default function RecruitmentForm() {
                                 borderColor: '#3d321c'
                             }}
                         />
-                    </div>                
+                    </div>
                     <div>
                         <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
                             No HP <span style={{ color: '#ebae3b' }}>*</span>
@@ -300,7 +306,7 @@ export default function RecruitmentForm() {
                                     borderColor: '#584928'
                                 }}
                             />
-                        </div>                      
+                        </div>
                         <div className="p-5 rounded-lg border-2" style={{ backgroundColor: '#2a2f36', borderColor: '#584928' }}>
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm" style={{ backgroundColor: '#584928', color: '#f2f3ff' }}>
@@ -406,7 +412,7 @@ export default function RecruitmentForm() {
                                 borderColor: '#3d321c'
                             }}
                         />
-                    </div>                
+                    </div>
                     <div>
                         <label className="block text-sm sm:text-base font-bold mb-3 sm:mb-4 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
                             Sudah follow IG TASIS? <span style={{ color: '#ebae3b' }}>*</span>
