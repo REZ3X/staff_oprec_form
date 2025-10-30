@@ -45,14 +45,11 @@ To connect this form to Google Sheets, follow these steps:
 // Google Apps Script - Deploy as Web App
 function doPost(e) {
   try {
-    // Parse the incoming data
     const data = JSON.parse(e.postData.contents);
     
-    // Open your spreadsheet (replace with your spreadsheet ID)
     const ss = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID_HERE');
     const sheet = ss.getSheetByName('Responses') || ss.insertSheet('Responses');
     
-    // If this is the first entry, create headers
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         'Timestamp',
@@ -66,28 +63,27 @@ function doPost(e) {
         'Alasan Pilihan 2',
         'Pilihan 3',
         'Alasan Pilihan 3',
+        'Pilihan 4',
+        'Alasan Pilihan 4',
         'Pengetahuan TASIS',
         'Follow IG',
         'Join WA'
       ]);
       
-      // Format header row
-      const headerRange = sheet.getRange(1, 1, 1, 14);
+      const headerRange = sheet.getRange(1, 1, 1, 16);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#ebae3b');
       headerRange.setFontColor('#0d1216');
     }
     
-    // Format the entire phone number column as text FIRST
     const lastRow = sheet.getLastRow();
     const phoneColumn = sheet.getRange(1, 3, sheet.getMaxRows(), 1);
     phoneColumn.setNumberFormat('@STRING@');
     
-    // Append the data with phone number prefixed with single quote to force text
     sheet.appendRow([
       data.timestamp || new Date(),
       data.nama || '',
-      "'" + (data.noHP || ''), // Force text format with single quote prefix
+      "'" + (data.noHP || ''),
       data.kelasJurusan || '',
       data.alasanBergabung || '',
       data.pilihan1 || '',
@@ -96,21 +92,20 @@ function doPost(e) {
       data.alasanPilihan2 || '',
       data.pilihan3 || '',
       data.alasanPilihan3 || '',
+      data.pilihan4 || '',
+      data.alasanPilihan4 || '',
       data.pengetahuanTasis || '',
       data.followIG || '',
       data.joinWA || ''
     ]);
     
-    // Auto-resize columns
-    sheet.autoResizeColumns(1, 14);
+    sheet.autoResizeColumns(1, 16);
     
-    // Return success response
     return ContentService
       .createTextOutput(JSON.stringify({ success: true, message: 'Data saved successfully' }))
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
-    // Return error response
     return ContentService
       .createTextOutput(JSON.stringify({ success: false, message: error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
