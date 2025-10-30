@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Open Recruitment Staf TASIS 2025/2026",
-  description: "Form pendaftaran staff TASIS (Tata Tertib Siswa) periode 2025/2026",
+  title: "Open Recruitment TASIS 2025/2026",
+  description: "Form pendaftaran TASIS (Tata Tertib Siswa) periode 2025/2026",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes",
   themeColor: "#0d1216",
   icons: {
@@ -10,8 +10,8 @@ export const metadata = {
     apple: '/logo.svg',
   },
   openGraph: {
-    title: "Open Recruitment Staf TASIS 2025/2026",
-    description: "Bergabunglah dengan TASIS! Form pendaftaran staff organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
+    title: "Open Recruitment TASIS 2025/2026",
+    description: "Bergabunglah dengan TASIS! Form pendaftaran organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
     url: "https://staffoprec.rejaka.id",
     siteName: "TASIS Recruitment",
     images: [
@@ -27,8 +27,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Open Recruitment Staf TASIS 2025/2026",
-    description: "Bergabunglah dengan TASIS! Form pendaftaran staff organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
+    title: "Open Recruitment TASIS 2025/2026",
+    description: "Bergabunglah dengan TASIS! Form pendaftaran organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
     images: ["/logo.svg"],
   },
 };
