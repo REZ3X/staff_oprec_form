@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { FaCheckCircle, FaTimesCircle, FaInstagram, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
 
-const POSITIONS = ['Ketua', 'Sekretaris', 'Bendahara'];
+const POSITIONS = ['Ketua', 'Sekretaris', 'Bendahara', 'Anggota'];
 
 export default function RecruitmentForm() {
     const [formData, setFormData] = useState({
@@ -18,6 +18,8 @@ export default function RecruitmentForm() {
         alasanPilihan2: '',
         pilihan3: '',
         alasanPilihan3: '',
+        pilihan4: '',
+        alasanPilihan4: '',
         pengetahuanTasis: '',
         followIG: '',
         joinWA: '',
@@ -43,10 +45,23 @@ export default function RecruitmentForm() {
                 newFormData.pilihan3 = '';
                 newFormData.alasanPilihan3 = '';
             }
+            if (newFormData.pilihan4 === value) {
+                newFormData.pilihan4 = '';
+                newFormData.alasanPilihan4 = '';
+            }
         } else if (field === 'pilihan2') {
             if (newFormData.pilihan3 === value) {
                 newFormData.pilihan3 = '';
                 newFormData.alasanPilihan3 = '';
+            }
+            if (newFormData.pilihan4 === value) {
+                newFormData.pilihan4 = '';
+                newFormData.alasanPilihan4 = '';
+            }
+        } else if (field === 'pilihan3') {
+            if (newFormData.pilihan4 === value) {
+                newFormData.pilihan4 = '';
+                newFormData.alasanPilihan4 = '';
             }
         }
 
@@ -169,7 +184,7 @@ export default function RecruitmentForm() {
                         />
                     </div>
                     <h1 className="text-3xl md:text-4xl font-black mb-3 tracking-tight" style={{ color: '#ebae3b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                        Open Recruitment Staf TASIS
+                        Open Recruitment TASIS
                     </h1>
                     <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#f2f3ff' }}>
                         Periode 2025/2026
@@ -240,7 +255,7 @@ export default function RecruitmentForm() {
 
                     <div>
                         <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
-                            Kenapa ingin jadi staf TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                            Kenapa ingin bergabung dengan TASIS? <span style={{ color: '#ebae3b' }}>*</span>
                         </label>
                         <textarea
                             required
@@ -307,6 +322,7 @@ export default function RecruitmentForm() {
                                 }}
                             />
                         </div>
+
                         <div className="p-5 rounded-lg border-2" style={{ backgroundColor: '#2a2f36', borderColor: '#584928' }}>
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm" style={{ backgroundColor: '#584928', color: '#f2f3ff' }}>
@@ -368,7 +384,7 @@ export default function RecruitmentForm() {
                                 style={{
                                     backgroundColor: '#1a1f26',
                                     color: '#f2f3ff',
-                                    borderColor: '#584928'
+                                    borderColor: '#3d321c'
                                 }}
                                 disabled={!formData.pilihan2}
                             >
@@ -389,23 +405,67 @@ export default function RecruitmentForm() {
                                 style={{
                                     backgroundColor: '#1a1f26',
                                     color: '#f2f3ff',
-                                    borderColor: '#584928'
+                                    borderColor: '#3d321c'
                                 }}
                                 disabled={!formData.pilihan3}
+                            />
+                        </div>
+
+                        <div className="p-5 rounded-lg border-2" style={{ backgroundColor: '#2a2f36', borderColor: '#2a2112' }}>
+                            <div className="flex items-center gap-2 mb-3">
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm" style={{ backgroundColor: '#2a2112', color: '#f2f3ff' }}>
+                                    4
+                                </div>
+                                <label className="block text-base font-bold tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
+                                    Prioritas Keempat <span style={{ color: '#ebae3b' }}>*</span>
+                                </label>
+                            </div>
+                            <select
+                                required
+                                value={formData.pilihan4}
+                                onChange={(e) => handlePositionChange('pilihan4', e.target.value)}
+                                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-600 mb-4 font-bold text-base"
+                                style={{
+                                    backgroundColor: '#1a1f26',
+                                    color: '#f2f3ff',
+                                    borderColor: '#2a2112'
+                                }}
+                                disabled={!formData.pilihan3}
+                            >
+                                <option value="" style={{ color: '#999' }}>-- Pilih Jabatan --</option>
+                                {getAvailablePositions([formData.pilihan1, formData.pilihan2, formData.pilihan3]).map((pos) => (
+                                    <option key={pos} value={pos} style={{ backgroundColor: '#1a1f26', color: '#f2f3ff', fontWeight: 'bold' }}>{pos}</option>
+                                ))}
+                            </select>
+                            <label className="block text-sm font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.8rem' }}>
+                                Alasan memilih jabatan tersebut <span style={{ color: '#ebae3b' }}>*</span>
+                            </label>
+                            <textarea
+                                required
+                                rows="3"
+                                value={formData.alasanPilihan4}
+                                onChange={(e) => setFormData({ ...formData, alasanPilihan4: e.target.value })}
+                                className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-600 resize-none font-medium"
+                                style={{
+                                    backgroundColor: '#1a1f26',
+                                    color: '#f2f3ff',
+                                    borderColor: '#2a2112'
+                                }}
+                                disabled={!formData.pilihan4}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-sm sm:text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
-                            Apa yang kamu tahu tentang TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                        <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
+                            Sejauh mana kamu tau tentang TASIS? <span style={{ color: '#ebae3b' }}>*</span>
                         </label>
                         <textarea
                             required
                             rows="4"
                             value={formData.pengetahuanTasis}
                             onChange={(e) => setFormData({ ...formData, pengetahuanTasis: e.target.value })}
-                            className="w-full px-3 sm:px-4 py-2 sm:py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-600 resize-none font-medium text-sm sm:text-base"
+                            className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:border-yellow-600 resize-none font-medium"
                             style={{
                                 backgroundColor: '#2a2f36',
                                 color: '#f2f3ff',
@@ -413,198 +473,99 @@ export default function RecruitmentForm() {
                             }}
                         />
                     </div>
-                    <div>
-                        <label className="block text-sm sm:text-base font-bold mb-3 sm:mb-4 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
-                            Sudah follow IG TASIS? <span style={{ color: '#ebae3b' }}>*</span>
-                        </label>
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                            <label
-                                className="relative cursor-pointer group"
-                                style={{
-                                    opacity: formData.followIG === 'Tidak' ? 0.6 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
-                                <input
-                                    type="radio"
-                                    name="followIG"
-                                    value="Ya"
-                                    required
-                                    checked={formData.followIG === 'Ya'}
-                                    onChange={(e) => setFormData({ ...formData, followIG: e.target.value })}
-                                    className="peer sr-only"
-                                />
-                                <div
-                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
-                                    style={{
-                                        borderColor: formData.followIG === 'Ya' ? '#ebae3b' : '#3d321c',
-                                        backgroundColor: formData.followIG === 'Ya' ? '#2a2f36' : '#1a1f26',
-                                        borderWidth: '3px',
-                                        boxShadow: formData.followIG === 'Ya' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
-                                    }}
-                                >
-                                    <div className="text-3xl sm:text-4xl mb-2">
-                                        <FaCheckCircle style={{ color: '#25D366', margin: '0 auto' }} />
-                                    </div>
-                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
-                                        SUDAH
-                                    </span>
-                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
-                                        Sudah Follow
-                                    </span>
-                                </div>
-                            </label>
 
-                            <label
-                                className="relative cursor-pointer group"
-                                style={{
-                                    opacity: formData.followIG === 'Ya' ? 0.6 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
+                    <div>
+                        <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
+                            Apakah kamu udah follow IG TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                        </label>
+                        <div className="flex gap-4">
+                            <label className="flex items-center cursor-pointer">
                                 <input
                                     type="radio"
                                     name="followIG"
-                                    value="Tidak"
+                                    value="Sudah"
                                     required
-                                    checked={formData.followIG === 'Tidak'}
                                     onChange={(e) => setFormData({ ...formData, followIG: e.target.value })}
-                                    className="peer sr-only"
+                                    className="mr-2"
                                 />
-                                <div
-                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
-                                    style={{
-                                        borderColor: formData.followIG === 'Tidak' ? '#ebae3b' : '#3d321c',
-                                        backgroundColor: formData.followIG === 'Tidak' ? '#2a2f36' : '#1a1f26',
-                                        borderWidth: '3px',
-                                        boxShadow: formData.followIG === 'Tidak' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
-                                    }}
-                                >
-                                    <div className="text-3xl sm:text-4xl mb-2">
-                                        <FaTimesCircle style={{ color: '#ef4444', margin: '0 auto' }} />
-                                    </div>
-                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
-                                        BELUM
-                                    </span>
-                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
-                                        Belum Follow
-                                    </span>
-                                </div>
+                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Sudah</span>
+                            </label>
+                            <label className="flex items-center cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="followIG"
+                                    value="Belum"
+                                    required
+                                    onChange={(e) => setFormData({ ...formData, followIG: e.target.value })}
+                                    className="mr-2"
+                                />
+                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Belum</span>
                             </label>
                         </div>
                         <a
-                            href="https://www.instagram.com/tasisstembayo/"
+                            href="https://instagram.com/tasis.smkn4bdg"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold hover:opacity-80 transition-all"
-                            style={{ backgroundColor: '#584928', color: '#f2f3ff' }}
+                            className="inline-flex items-center gap-2 mt-3 text-sm font-bold hover:opacity-80 transition-opacity"
+                            style={{ color: '#ebae3b' }}
                         >
-                            <FaInstagram className="text-lg" />
-                            Kunjungi Instagram TASIS
+                            <FaInstagram />
+                            @tasis.smkn4bdg
                         </a>
                     </div>
 
                     <div>
-                        <label className="block text-sm sm:text-base font-bold mb-3 sm:mb-4 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
-                            Sudah join grup WA TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                        <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
+                            Apakah kamu udah join grup WA TASIS? <span style={{ color: '#ebae3b' }}>*</span>
                         </label>
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                            <label
-                                className="relative cursor-pointer group"
-                                style={{
-                                    opacity: formData.joinWA === 'Tidak' ? 0.6 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
+                        <div className="flex gap-4">
+                            <label className="flex items-center cursor-pointer">
                                 <input
                                     type="radio"
                                     name="joinWA"
-                                    value="Ya"
+                                    value="Sudah"
                                     required
-                                    checked={formData.joinWA === 'Ya'}
                                     onChange={(e) => setFormData({ ...formData, joinWA: e.target.value })}
-                                    className="peer sr-only"
+                                    className="mr-2"
                                 />
-                                <div
-                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
-                                    style={{
-                                        borderColor: formData.joinWA === 'Ya' ? '#ebae3b' : '#3d321c',
-                                        backgroundColor: formData.joinWA === 'Ya' ? '#2a2f36' : '#1a1f26',
-                                        borderWidth: '3px',
-                                        boxShadow: formData.joinWA === 'Ya' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
-                                    }}
-                                >
-                                    <div className="text-3xl sm:text-4xl mb-2">
-                                        <FaCheckCircle style={{ color: '#25D366', margin: '0 auto' }} />
-                                    </div>
-                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
-                                        SUDAH
-                                    </span>
-                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
-                                        Sudah Join
-                                    </span>
-                                </div>
+                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Sudah</span>
                             </label>
-
-                            <label
-                                className="relative cursor-pointer group"
-                                style={{
-                                    opacity: formData.joinWA === 'Ya' ? 0.6 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                            >
+                            <label className="flex items-center cursor-pointer">
                                 <input
                                     type="radio"
                                     name="joinWA"
-                                    value="Tidak"
+                                    value="Belum"
                                     required
-                                    checked={formData.joinWA === 'Tidak'}
                                     onChange={(e) => setFormData({ ...formData, joinWA: e.target.value })}
-                                    className="peer sr-only"
+                                    className="mr-2"
                                 />
-                                <div
-                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
-                                    style={{
-                                        borderColor: formData.joinWA === 'Tidak' ? '#ebae3b' : '#3d321c',
-                                        backgroundColor: formData.joinWA === 'Tidak' ? '#2a2f36' : '#1a1f26',
-                                        borderWidth: '3px',
-                                        boxShadow: formData.joinWA === 'Tidak' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
-                                    }}
-                                >
-                                    <div className="text-3xl sm:text-4xl mb-2">
-                                        <FaTimesCircle style={{ color: '#ef4444', margin: '0 auto' }} />
-                                    </div>
-                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
-                                        BELUM
-                                    </span>
-                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
-                                        Belum Join
-                                    </span>
-                                </div>
+                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Belum</span>
                             </label>
                         </div>
                         <a
-                            href="https://chat.whatsapp.com/EdmVuxo96m08OCyeSK82xs?mode=wwt"
+                            href="https://chat.whatsapp.com/your-group-link"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold hover:opacity-80 transition-all"
-                            style={{ backgroundColor: '#25D366', color: '#ffffff' }}
+                            className="inline-flex items-center gap-2 mt-3 text-sm font-bold hover:opacity-80 transition-opacity"
+                            style={{ color: '#ebae3b' }}
                         >
-                            <FaWhatsapp className="text-lg" />
-                            Join Grup WhatsApp TASIS
+                            <FaWhatsapp />
+                            Join Grup WA TASIS
                         </a>
                     </div>
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-black text-base sm:text-lg md:text-xl transition-all hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg active:scale-[0.98]"
-                        style={{ backgroundColor: '#ebae3b', color: '#0d1216', textTransform: 'uppercase', letterSpacing: '1px' }}
+                        className="w-full py-4 rounded-lg font-black text-lg tracking-wide transition-all hover:opacity-90 disabled:opacity-50"
+                        style={{
+                            backgroundColor: '#ebae3b',
+                            color: '#0d1216',
+                            textTransform: 'uppercase'
+                        }}
                     >
-                        {loading ? 'MENGIRIM...' : 'KIRIM PENDAFTARAN'}
+                        {loading ? 'Mengirim...' : 'Kirim Pendaftaran'}
                     </button>
                 </form>
             </div>
         </div>
-    );
-}
