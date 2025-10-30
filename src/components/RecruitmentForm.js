@@ -569,3 +569,5 @@ export default function RecruitmentForm() {
                 </form>
             </div>
         </div>
+    );
+}
