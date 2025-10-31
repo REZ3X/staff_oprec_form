@@ -475,82 +475,184 @@ export default function RecruitmentForm() {
                     </div>
 
                     <div>
-                        <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
-                            Apakah kamu udah follow IG TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                        <label className="block text-sm sm:text-base font-bold mb-3 sm:mb-4 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
+                            Sudah follow IG TASIS? <span style={{ color: '#ebae3b' }}>*</span>
                         </label>
-                        <div className="flex gap-4">
-                            <label className="flex items-center cursor-pointer">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                            <label
+                                className="relative cursor-pointer group"
+                                style={{
+                                    opacity: formData.followIG === 'Tidak' ? 0.6 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
                                 <input
                                     type="radio"
                                     name="followIG"
-                                    value="Sudah"
+                                    value="Ya"
                                     required
+                                    checked={formData.followIG === 'Ya'}
                                     onChange={(e) => setFormData({ ...formData, followIG: e.target.value })}
-                                    className="mr-2"
+                                    className="peer sr-only"
                                 />
-                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Sudah</span>
+                                <div
+                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
+                                    style={{
+                                        borderColor: formData.followIG === 'Ya' ? '#ebae3b' : '#3d321c',
+                                        backgroundColor: formData.followIG === 'Ya' ? '#2a2f36' : '#1a1f26',
+                                        borderWidth: '3px',
+                                        boxShadow: formData.followIG === 'Ya' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
+                                    }}
+                                >
+                                    <div className="text-3xl sm:text-4xl mb-2">
+                                        <FaCheckCircle style={{ color: '#25D366', margin: '0 auto' }} />
+                                    </div>
+                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
+                                        SUDAH
+                                    </span>
+                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
+                                        Sudah Follow
+                                    </span>
+                                </div>
                             </label>
-                            <label className="flex items-center cursor-pointer">
+
+                            <label
+                                className="relative cursor-pointer group"
+                                style={{
+                                    opacity: formData.followIG === 'Ya' ? 0.6 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
                                 <input
                                     type="radio"
                                     name="followIG"
-                                    value="Belum"
+                                    value="Tidak"
                                     required
+                                    checked={formData.followIG === 'Tidak'}
                                     onChange={(e) => setFormData({ ...formData, followIG: e.target.value })}
-                                    className="mr-2"
+                                    className="peer sr-only"
                                 />
-                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Belum</span>
+                                <div
+                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
+                                    style={{
+                                        borderColor: formData.followIG === 'Tidak' ? '#ebae3b' : '#3d321c',
+                                        backgroundColor: formData.followIG === 'Tidak' ? '#2a2f36' : '#1a1f26',
+                                        borderWidth: '3px',
+                                        boxShadow: formData.followIG === 'Tidak' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
+                                    }}
+                                >
+                                    <div className="text-3xl sm:text-4xl mb-2">
+                                        <FaTimesCircle style={{ color: '#ef4444', margin: '0 auto' }} />
+                                    </div>
+                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
+                                        BELUM
+                                    </span>
+                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
+                                        Belum Follow
+                                    </span>
+                                </div>
                             </label>
                         </div>
                         <a
-                            href="https://instagram.com/tasis.smkn4bdg"
+                            href="https://www.instagram.com/tasisstembayo/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-3 text-sm font-bold hover:opacity-80 transition-opacity"
-                            style={{ color: '#ebae3b' }}
+                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold hover:opacity-80 transition-all"
+                            style={{ backgroundColor: '#584928', color: '#f2f3ff' }}
                         >
-                            <FaInstagram />
-                            @tasis.smkn4bdg
+                            <FaInstagram className="text-lg" />
+                            Kunjungi Instagram TASIS
                         </a>
                     </div>
 
                     <div>
-                        <label className="block text-base font-bold mb-2 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: '0.875rem', letterSpacing: '0.5px' }}>
-                            Apakah kamu udah join grup WA TASIS? <span style={{ color: '#ebae3b' }}>*</span>
+                        <label className="block text-sm sm:text-base font-bold mb-3 sm:mb-4 tracking-wide" style={{ color: '#f2f3ff', textTransform: 'uppercase', fontSize: 'clamp(0.75rem, 2vw, 0.875rem)', letterSpacing: '0.5px' }}>
+                            Sudah join grup WA TASIS? <span style={{ color: '#ebae3b' }}>*</span>
                         </label>
-                        <div className="flex gap-4">
-                            <label className="flex items-center cursor-pointer">
+                        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                            <label
+                                className="relative cursor-pointer group"
+                                style={{
+                                    opacity: formData.joinWA === 'Tidak' ? 0.6 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
                                 <input
                                     type="radio"
                                     name="joinWA"
-                                    value="Sudah"
+                                    value="Ya"
                                     required
+                                    checked={formData.joinWA === 'Ya'}
                                     onChange={(e) => setFormData({ ...formData, joinWA: e.target.value })}
-                                    className="mr-2"
+                                    className="peer sr-only"
                                 />
-                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Sudah</span>
+                                <div
+                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
+                                    style={{
+                                        borderColor: formData.joinWA === 'Ya' ? '#ebae3b' : '#3d321c',
+                                        backgroundColor: formData.joinWA === 'Ya' ? '#2a2f36' : '#1a1f26',
+                                        borderWidth: '3px',
+                                        boxShadow: formData.joinWA === 'Ya' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
+                                    }}
+                                >
+                                    <div className="text-3xl sm:text-4xl mb-2">
+                                        <FaCheckCircle style={{ color: '#25D366', margin: '0 auto' }} />
+                                    </div>
+                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
+                                        SUDAH
+                                    </span>
+                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
+                                        Sudah Join
+                                    </span>
+                                </div>
                             </label>
-                            <label className="flex items-center cursor-pointer">
+
+                            <label
+                                className="relative cursor-pointer group"
+                                style={{
+                                    opacity: formData.joinWA === 'Ya' ? 0.6 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                            >
                                 <input
                                     type="radio"
                                     name="joinWA"
-                                    value="Belum"
+                                    value="Tidak"
                                     required
+                                    checked={formData.joinWA === 'Tidak'}
                                     onChange={(e) => setFormData({ ...formData, joinWA: e.target.value })}
-                                    className="mr-2"
+                                    className="peer sr-only"
                                 />
-                                <span className="font-medium" style={{ color: '#f2f3ff' }}>Belum</span>
+                                <div
+                                    className="p-4 sm:p-5 rounded-xl border-3 text-center transition-all duration-300 peer-checked:scale-105 group-hover:scale-[1.02]"
+                                    style={{
+                                        borderColor: formData.joinWA === 'Tidak' ? '#ebae3b' : '#3d321c',
+                                        backgroundColor: formData.joinWA === 'Tidak' ? '#2a2f36' : '#1a1f26',
+                                        borderWidth: '3px',
+                                        boxShadow: formData.joinWA === 'Tidak' ? '0 0 20px rgba(235, 174, 59, 0.3)' : 'none'
+                                    }}
+                                >
+                                    <div className="text-3xl sm:text-4xl mb-2">
+                                        <FaTimesCircle style={{ color: '#ef4444', margin: '0 auto' }} />
+                                    </div>
+                                    <span className="font-black text-sm sm:text-base block" style={{ color: '#f2f3ff' }}>
+                                        BELUM
+                                    </span>
+                                    <span className="text-xs font-medium block mt-1" style={{ color: '#ebae3b' }}>
+                                        Belum Join
+                                    </span>
+                                </div>
                             </label>
                         </div>
                         <a
-                            href="https://chat.whatsapp.com/your-group-link"
+                            href="https://chat.whatsapp.com/EdmVuxo96m08OCyeSK82xs?mode=wwt"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 mt-3 text-sm font-bold hover:opacity-80 transition-opacity"
-                            style={{ color: '#ebae3b' }}
+                            className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold hover:opacity-80 transition-all"
+                            style={{ backgroundColor: '#25D366', color: '#ffffff' }}
                         >
-                            <FaWhatsapp />
-                            Join Grup WA TASIS
+                            <FaWhatsapp className="text-lg" />
+                            Join Grup WhatsApp TASIS
                         </a>
                     </div>
 
