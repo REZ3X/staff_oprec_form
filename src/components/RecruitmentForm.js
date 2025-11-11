@@ -645,7 +645,7 @@ export default function RecruitmentForm() {
                             </label>
                         </div>
                         <a
-                            href="https://chat.whatsapp.com/EdmVuxo96m08OCyeSK82xs?mode=wwt"
+                            href="https://chat.whatsapp.com/GOteap5ZxLO5DfF41Wn1jr?mode=wwt"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold hover:opacity-80 transition-all"
