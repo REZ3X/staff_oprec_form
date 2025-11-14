@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { FaCheckCircle, FaTimesCircle, FaInstagram, FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaInstagram, FaWhatsapp, FaPhoneAlt, FaLock } from 'react-icons/fa';
 
 const POSITIONS = ['Ketua', 'Sekretaris', 'Bendahara', 'Anggota'];
+const IS_REGISTRATION_CLOSED = true;
 
 export default function RecruitmentForm() {
     const [formData, setFormData] = useState({
@@ -99,6 +100,82 @@ export default function RecruitmentForm() {
             setLoading(false);
         }
     };
+
+    if (IS_REGISTRATION_CLOSED) {
+        return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: '#0d1216' }}>
+                <div className="w-full max-w-2xl rounded-lg shadow-2xl p-8 md:p-12" style={{ backgroundColor: '#1a1f26', borderTop: '6px solid #ebae3b', border: '2px solid #ebae3b' }}>
+                    <div className="text-center mb-8">
+                        <div className="mb-6 flex justify-center">
+                            <div className="relative">
+                                <Image
+                                    src="/logo.svg"
+                                    alt="TASIS Logo"
+                                    width={120}
+                                    height={120}
+                                    className="object-contain opacity-90"
+                                />
+                                <div className="absolute -top-2 -right-2 bg-red-600 rounded-full p-3 shadow-lg">
+                                    <FaLock className="text-white text-xl" />
+                                </div>
+                            </div>
+                        </div>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 tracking-tight" style={{ color: '#ebae3b', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                            PENDAFTARAN DITUTUP
+                        </h1>
+                        <div className="mb-6 p-6 rounded-lg" style={{ backgroundColor: '#2a2f36', border: '2px solid #584928' }}>
+                            <p className="text-lg sm:text-xl md:text-2xl font-bold mb-4" style={{ color: '#f2f3ff' }}>
+                                Jadwal Selanjutnya:
+                            </p>
+                            <p className="text-2xl sm:text-3xl md:text-4xl font-black" style={{ color: '#ebae3b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                                TEST WAWANCARA
+                            </p>
+                        </div>
+                        <p className="text-sm sm:text-base font-medium" style={{ color: '#f2f3ff', opacity: 0.9 }}>
+                            Terima kasih atas antusiasme kalian! 🎉<br />
+                            Informasi lebih lanjut akan diumumkan segera.
+                        </p>
+                    </div>
+
+                    <div className="space-y-4 mt-8">
+                        <h2 className="text-xl font-black mb-4 tracking-tight text-center" style={{ color: '#ebae3b', textTransform: 'uppercase' }}>
+                            Contact Person:
+                        </h2>
+                        <a
+                            href="https://wa.me/6283107393837"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full p-3 sm:p-4 rounded-lg text-center font-bold sm:font-medium text-sm sm:text-base transition-all hover:shadow-md hover:opacity-90"
+                            style={{ backgroundColor: '#ebae3b', color: '#0d1216' }}
+                        >
+                            <span className="inline-flex items-center gap-2">
+                                <FaPhoneAlt />
+                                Contact Person 1: 0831-0739-3837 (Abim)
+                            </span>
+                        </a>
+                        <a
+                            href="https://wa.me/6287898973388"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full p-3 sm:p-4 rounded-lg text-center font-bold sm:font-medium text-sm sm:text-base transition-all hover:shadow-md hover:opacity-90"
+                            style={{ backgroundColor: '#ebae3b', color: '#0d1216' }}
+                        >
+                            <span className="inline-flex items-center gap-2">
+                                <FaPhoneAlt />
+                                Contact Person 2: 0878-9897-3388 (Rani)
+                            </span>
+                        </a>
+                    </div>
+
+                    <div className="mt-8 text-center">
+                        <p className="text-xs sm:text-sm font-semibold" style={{ color: '#584928' }}>
+                            © 2025 TASIS - Tata Tertib Siswa
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     if (submitted) {
         return (

@@ -16,7 +16,7 @@ export const metadata = {
     siteName: "TASIS Recruitment",
     images: [
       {
-        url: "/og-image.png", // Changed from .svg to .png
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "TASIS Logo - Tata Tertib Siswa",
@@ -29,7 +29,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Open Recruitment TASIS 2025/2026",
     description: "Bergabunglah dengan TASIS! Form pendaftaran organisasi Tata Tertib Siswa periode 2025/2026. Daftar sekarang!",
-    images: ["/og-image.png"], // Changed from .svg to .png
+    images: ["/og-image.png"], 
   },
 };
 
